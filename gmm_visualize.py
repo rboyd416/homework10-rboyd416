@@ -1,19 +1,31 @@
 import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
-
+import math
 
 #function which computes a gaussian model with mean mu and variance var on the data array x
 def gauss(x, mu, var):
     #fill in
-
+    p = []
+    for d in x:
+        p.append(norm.pdf(d, mu, math.sqrt(var)))
+    p = np.array(p)
     return p
 
 
 #function which uses plt to plot the individual clusters and the full mixture model on a single chart
 def plot_model(x, clusters, model):
     #fill in
+    index = 1
+    #plt.plot(x, model, label = "Full Model")
+    for c in clusters:
+        plt.plot(x, c, label = "Cluster " + str(index))
+        
+        index += 1
 
+    plt.plot(x, model, label = "Full Model")
+    plt.title("Guassian Mixture Model with Clusters at k = 6")
+    plt.legend()
     plt.show()
 
 
